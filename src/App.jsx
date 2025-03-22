@@ -20,7 +20,7 @@ export default function Homepage() {
 
         try {
             const result = await signIn(email, password);
-            console.log(result);
+            // console.log(result);
             
             const checkSession = () => {
               if(session){

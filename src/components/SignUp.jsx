@@ -4,23 +4,49 @@ import { UserAuth } from '../context/AuthContext';
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [emailError, setEmailError] = useState('');
+  const [password, setPassword] = useState("");  
+  const allowedProviders = [
+    "gmail.com", 
+    "yahoo.com", 
+    "outlook.com", 
+    "icloud.com", 
+    "protonmail.com", 
+    "aol.com", 
+    "hotmail.com"
+  ];
+  const validCredentials = email && password;
   const { signUp } = UserAuth();
-  // console.log(session);
   const navigate = useNavigate();
 
-  const validCredentials = email && password;
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return 'Invalid email format.';
+    }
+
+    const domain = email.split('@')[1];
+    if (!allowedProviders.includes(domain)) {
+      return `Email provider "${domain}" is not allowed. Please use one of: ${allowedProviders.join(
+        ', '
+      )}.`;
+    }
+
+    return '';
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (validCredentials) {
-        console.log("clicked on register");
+    const emailValidationResult = validateEmail(email);
+    setEmailError(emailValidationResult)
+
+    if (!emailValidationResult && validCredentials) {
+        // console.log("clicked on register");
 
         try {
             const result = await signUp(email, password);
-            console.log(result);
+            // console.log(result);
             
             if (result.success) navigate("/loginpage");
             if (result.error) alert(result.error);
@@ -43,6 +69,8 @@ export default function SignUp() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="border rounded p-1"
                   />
+                  
+                  {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
 
                   <input
                     type="password"

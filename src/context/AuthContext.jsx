@@ -34,7 +34,7 @@ export const AuthContextProvider = ({children}) => {
             }
 
             // print session in console for checking purposes
-            console.log("sign in success", data);
+            // console.log("sign in success", data);
             return {succes: true, data}
             
         } catch(e) {
