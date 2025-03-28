@@ -14,7 +14,7 @@ export const AuthContextProvider = ({children}) => {
         })
 
         if (error) {
-            console.log("problem signing up:", error)
+            console.error("problem signing up:", error)
             return {succes: false, error}
         }
 
@@ -29,7 +29,7 @@ export const AuthContextProvider = ({children}) => {
             });
 
             if (error) {
-                console.log("error: ", error);
+                console.error("error: ", error);
                 return {succes: false, error: error.message};
             }
 

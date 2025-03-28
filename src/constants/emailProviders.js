@@ -5,5 +5,6 @@ export const allowedProviders = [
     "icloud.com",
     "protonmail.com",
     "aol.com",
-    "hotmail.com"
+    "hotmail.com",
+    "ymail.com"
   ];

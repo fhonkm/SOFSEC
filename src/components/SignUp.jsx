@@ -75,7 +75,6 @@ export default function SignUp() {
                     type="text"
                     id="username"
                     placeholder="Username"
-                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="border rounded p-1"
                   />
@@ -86,7 +85,6 @@ export default function SignUp() {
                     type="password"
                     id="password"
                     placeholder="Password"
-                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="border rounded p-1"
                   />
