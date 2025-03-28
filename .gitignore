@@ -25,4 +25,5 @@ dist-ssr
 *.sw?
 
 # code privates
-supabase.js
+/supabase.js
+/src/constants/emailProviders.js
